@@ -1,25 +1,18 @@
 import { describe, it, expect } from "vitest";
+import { myMap, myReduce } from "../arrays.mjs";
+const array = [10, 1000, -10, 30, 60];
+describe("map / reduce", () => {
+    array.map = myMap();
+    array.reduce = myReduce();
 
-describe("array introspecting", () => {
-    const array = [10, 1000, -10, 30, 60];
-
-    it("includes", () => {
-        const objects = [
-            {x:4},
-            {x:5}
-        ];
-        expect(array.includes(1000)).toBeTruthy();
-        expect(array.includes(200)).toBeFalsy();
-        expect(array.includes({x:4})).toBeFalsy();
+    it("myMap testing", () => {
+        const expected = [10, 1001, -7, 33, 64] //array of elements where each element will be converted to element + index
+        expect(array.map((e, index) => e + index)).toEqual(expected);
     });
 
-    it("testing for array ob objects", () => {
-        expect(objects.find(ovj.x === 4)).toBeTruthy();
-        expect(objects.find(ovj.x === 1)).toBeFalsy();
-    });
-
-    it("testing for all elements match acondition", () => {
-        expect(array.every(num => num % 2 === 0)).toBeTruthy();
-        expect(array.some(num => num % 2 !== 0)).toBeFalsy();
+    it("myReduce testing", () => {
+        // TODO
+        // write two reduce methods for taking sum of all array numbers
+        // and minimal and maximal values for only one reduce call
     });
 });
